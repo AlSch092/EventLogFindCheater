@@ -14,7 +14,7 @@ using namespace std;
 #define EVENTLOG_APPLICATION_CRITICAL_EXCEPTION 1000  //these are the "Red-grade icon" entries representing a program crash
 #define EVENTLOG_APPLICATION_WER_APPCRASH 1001        //"white-grade icon" entries for APPCRASH
 
-#define OUR_PROGRAM L"PathOfExile.exe"
+#define OUR_PROGRAM L"QueryEventLog.exe" //change to whatever your program is
 
 list<wstring> crashed_modules_list = list<wstring>();
 
@@ -214,8 +214,6 @@ bool is_faulting_module_loaded()
 
 int main(int argc, char** argv) 
 {
-	LoadLibraryA("GoPoE.dll");
-
 	if (scan_event_log_for_cheater()) //gather .dlls which have crashed our application previously
 	{
 		if (is_faulting_module_loaded()) //loop through the current program's modules and see if the faulting modules found are present/loaded
